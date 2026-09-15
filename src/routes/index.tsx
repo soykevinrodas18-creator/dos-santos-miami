@@ -142,7 +142,7 @@ function HomePage() {
 
       <div className="overflow-hidden bg-gold py-3 text-navy"><div className="ticker-track flex w-max gap-8 whitespace-nowrap display-type text-xl"><span>FAMILY MADE • MIAMI BORN • ALWAYS FRESH • GOOD VIBES ONLY • </span><span>FAMILY MADE • MIAMI BORN • ALWAYS FRESH • GOOD VIBES ONLY • </span></div></div>
 
-      <section id="story" className="overflow-hidden bg-cream py-20 lg:py-32">
+      <section id="story" className="scroll-mt-20 overflow-hidden bg-cream py-20 lg:py-32">
         <ScrollReveal className="section-shell grid items-center gap-14 lg:grid-cols-[1.05fr_.95fr]">
           <div className="relative order-2 lg:order-1">
             <img src={favoritesImage} width={1600} height={1008} loading="lazy" alt="Dos Santos toasted sandwich and creamy pasta" className="aspect-[4/3] w-full object-cover shadow-[18px_18px_0_var(--gold)]" />
@@ -165,7 +165,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section id="menu" className="bg-cream py-20 lg:py-32">
+      <section id="menu" className="scroll-mt-20 bg-cream py-20 lg:py-32">
         <div className="section-shell">
           <ScrollReveal className="text-center"><p className="text-sm font-bold tracking-[0.2em] text-fuchsia">PICK YOUR MOOD</p><h2 className="display-type mt-2 text-7xl text-navy sm:text-9xl">THE MENU</h2><div className="mx-auto mt-4 h-1 w-24 bg-gold" /></ScrollReveal>
           <div className="mt-10 flex gap-2 overflow-x-auto pb-4">{(Object.keys(menuGroups) as MenuCategory[]).map((item) => <Button key={item} onClick={() => setCategory(item)} className={`h-11 shrink-0 rounded-none border px-5 font-bold shadow-none ${category === item ? "border-fuchsia bg-fuchsia text-primary-foreground" : "border-navy bg-transparent text-navy hover:bg-navy hover:text-primary-foreground"}`}>{item}</Button>)}</div>
@@ -182,11 +182,15 @@ function HomePage() {
         </ScrollReveal>
       </section>
 
-      <section id="gallery" className="bg-navy py-20 text-primary-foreground lg:py-28">
+      <section id="gallery" className="scroll-mt-20 bg-navy py-20 text-primary-foreground lg:py-28">
         <div className="section-shell">
           <ScrollReveal className="mb-10 grid gap-4 md:grid-cols-[1fr_auto] md:items-end"><div><p className="font-bold tracking-[0.2em] text-fuchsia">FROM OUR TABLE</p><h2 className="display-type text-7xl sm:text-9xl">THE VIBE</h2></div><p className="max-w-xs text-primary-foreground/65">A little loud. A lot delicious. Always Miami.</p></ScrollReveal>
           <div className="grid auto-rows-[13rem] grid-cols-2 gap-3 md:auto-rows-[18rem] md:grid-cols-4">
-            {["object-[16%_18%] md:col-span-2 md:row-span-2", "object-[50%_18%]", "object-[84%_18%]", "object-[16%_82%]", "object-[84%_82%]"].map((position, index) => <div key={position} className={`group overflow-hidden ${index === 0 ? "col-span-2 row-span-2" : ""}`}><img src={galleryImage} width={1600} height={1200} loading="lazy" alt={["Pink Miami cocktail", "Golden croquetas", "Dos Santos dining room", "Pressed sandwich", "Friends dining together"][index]} className={`h-full w-full scale-[2.08] object-cover transition-transform duration-700 group-hover:scale-[2.16] ${position}`} /></div>)}
+            <div className="group col-span-2 row-span-2 overflow-hidden"><img src={galleryImage} width={1600} height={1200} loading="lazy" alt="Dos Santos food, drinks and Miami atmosphere" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></div>
+            <div className="group overflow-hidden"><img src={favoritesImage} width={1600} height={1008} loading="lazy" alt="Dos Santos toasted sandwich" className="h-full w-full object-cover object-left transition-transform duration-700 group-hover:scale-105" /></div>
+            <div className="group overflow-hidden"><img src={experienceImage} width={1600} height={1104} loading="lazy" alt="Friends dining at Dos Santos" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></div>
+            <div className="group overflow-hidden"><img src={heroImage} width={1920} height={1200} loading="lazy" alt="Freshly prepared Dos Santos dishes" className="h-full w-full object-cover object-right transition-transform duration-700 group-hover:scale-105" /></div>
+            <div className="group overflow-hidden"><img src={favoritesImage} width={1600} height={1008} loading="lazy" alt="Creamy Miami rigatoni" className="h-full w-full object-cover object-right transition-transform duration-700 group-hover:scale-105" /></div>
           </div>
         </div>
       </section>
@@ -194,11 +198,15 @@ function HomePage() {
       <section className="bg-primary-foreground py-20 lg:py-28">
         <div className="section-shell">
           <ScrollReveal className="flex flex-col justify-between gap-5 md:flex-row md:items-end"><div><p className="font-bold tracking-[0.2em] text-fuchsia">@DOSSANTOSMIAMI</p><h2 className="display-type text-7xl text-navy sm:text-9xl">FOLLOW THE VIBE</h2></div><BrandButton href="https://www.instagram.com/">FOLLOW US</BrandButton></ScrollReveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">{["object-[16%_18%]", "object-[50%_82%]", "object-[84%_18%]"].map((position, index) => <a key={position} href="https://www.instagram.com/" aria-label={`View Instagram post ${index + 1}`} className="group relative aspect-square overflow-hidden bg-navy"><img src={galleryImage} width={1600} height={1200} loading="lazy" alt="Dos Santos food and atmosphere" className={`h-full w-full scale-[2.08] object-cover transition-transform duration-700 group-hover:scale-[2.18] ${position}`} /><span className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-fuchsia text-primary-foreground opacity-0 transition-opacity group-hover:opacity-100"><Instagram /></span></a>)}</div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">{[
+            [galleryImage, "object-left", 1600, 1200],
+            [favoritesImage, "object-right", 1600, 1008],
+            [experienceImage, "object-center", 1600, 1104],
+          ].map(([src, position, width, height], index) => <a key={String(src)} href="https://www.instagram.com/" aria-label={`View Instagram post ${index + 1}`} className="group relative aspect-square overflow-hidden bg-navy"><img src={String(src)} width={Number(width)} height={Number(height)} loading="lazy" alt="Dos Santos food and atmosphere" className={`h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 ${position}`} /><span className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-fuchsia text-primary-foreground opacity-0 transition-opacity group-hover:opacity-100"><Instagram /></span></a>)}</div>
         </div>
       </section>
 
-      <section id="contact" className="bg-gold py-20 lg:py-28">
+      <section id="contact" className="scroll-mt-20 bg-gold py-20 lg:py-28">
         <div className="section-shell grid overflow-hidden bg-cream lg:grid-cols-[.85fr_1.15fr]">
           <ScrollReveal className="p-8 sm:p-12 lg:p-16"><p className="font-bold tracking-[0.2em] text-fuchsia">WELCOME TO THE 305</p><h2 className="display-type mt-2 text-7xl leading-none text-navy sm:text-8xl">COME<br/>SEE US</h2><div className="mt-8 space-y-6 text-navy"><div className="flex gap-4"><MapPin className="shrink-0 text-fuchsia"/><div><strong>MIAMI, FLORIDA</strong><p className="text-sm text-muted-foreground">Exact address coming soon</p></div></div><div className="flex gap-4"><Clock3 className="shrink-0 text-fuchsia"/><div><strong>OPENING HOURS</strong><p className="text-sm text-muted-foreground">Service hours coming soon</p></div></div><div className="flex gap-4"><Phone className="shrink-0 text-fuchsia"/><div><strong>CALL DOS SANTOS</strong><p className="text-sm text-muted-foreground">Phone number coming soon</p></div></div></div><div className="mt-9 flex flex-col gap-3 sm:flex-row"><BrandButton href="https://maps.google.com/?q=Miami+Florida">GET DIRECTIONS</BrandButton><Button disabled className="h-12 rounded-none border border-navy bg-transparent px-7 font-bold text-navy opacity-60 shadow-none"><Phone /> CALL US</Button></div></ScrollReveal>
           <div className="min-h-[26rem] bg-miami"><iframe title="Map of Miami, Florida" src="https://www.google.com/maps?q=Miami%2C%20Florida&z=12&output=embed" className="h-full min-h-[26rem] w-full border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
