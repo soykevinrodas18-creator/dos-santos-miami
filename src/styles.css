@@ -69,7 +69,7 @@
 }
 
 :root {
-  --radius: 0.35rem;
+  --radius: 0.5rem;
   --background: oklch(0.98 0.022 87);
   --foreground: oklch(0.2 0.055 238);
   --card: oklch(1 0 0);
@@ -181,6 +181,53 @@
 
 @utility ticker-track { animation: ticker 25s linear infinite; }
 @utility float-mark { animation: float-mark 5s ease-in-out infinite; }
+
+.food-card {
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.food-card:hover {
+  transform: translate(-2px, -3px);
+  box-shadow: 10px 10px 0 var(--fuchsia);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 13rem;
+  gap: 0.75rem;
+}
+
+.gallery-grid figure {
+  overflow: hidden;
+  border: 3px solid var(--gold);
+  border-radius: var(--radius);
+  background: var(--miami);
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms ease, filter 600ms ease;
+}
+
+.gallery-grid figure:hover img {
+  transform: scale(1.05);
+  filter: saturate(1.15);
+}
+
+.gallery-grid .gallery-main {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (min-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 17rem;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
